@@ -1,14 +1,18 @@
+let quizMethods = {
+  isAnswerCorrect: function (index) {
+    return index == this.correctAnswerIndex
+  },
+  getCorrectAnswer: function () {
+    return this.options[this.correctAnswerIndex]
+  }
+}
+
+
 function quiz(title, options, correctAnswerIndex) {
-  let question = {}
+  let question = Object.create(quizMethods)
   question.title = title;
   question.options = options;
   question.correctAnswerIndex = correctAnswerIndex;
-  question.isAnswerCorrect = function (index) {
-    return index == this.correctAnswerIndex
-  }
-  question.getCorrectAnswer = function () {
-    return this.options[this.correctAnswerIndex]
-  }
   return question
 }
 
