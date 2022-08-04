@@ -8,7 +8,7 @@
 
 - Create a getter method named `area` that will return area of the square.
 
-- Create a setter method named `area` that will accept a value (the value will be the area of any square like 124). Based on the input value update the `width` and `height` of the square.(The width and the height will be updated to 12 (12 \* 12 = 124))
+- Create a setter method named `area` that will accept a value (the value will be the area of any square like 144). Based on the input value update the `width` and `height` of the square.(The width and the height will be updated to 12 (12 \* 12 = 144))
 
 - Create a static method named `isEqual` which accepts two square instance (when you create a new object using the class). If the area of both square is same the method should return `true` or `false`. (Static methods are called directly on the class not in the instance)
 
