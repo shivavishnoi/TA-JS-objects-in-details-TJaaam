@@ -1,15 +1,15 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); // true
 
 // ------------
 
-console.log(this === window); //Output
+console.log(this === window); //true
 
 // ------------
 
 var myFunction = function () {
   console.log(this);
 };
-myFunction(); // Output
+myFunction(); // windows obj
 
 // ------------
 
@@ -17,7 +17,7 @@ function f1() {
   'use strict';
   return this;
 }
-console.log(f1() === window); //Output
+console.log(f1() === window); //false
 
 // ------------
 
@@ -26,15 +26,15 @@ function foo() {
   console.log(this === window);
 }
 
-foo(); //Output ??
+foo(); //undefined
 
 // ------------
 
 // This for IIFE
 (function () {
   console.log('Anonymous function invocation');
-  console.log(this === window);
-})(); //Output
+  console.log(this === window); //true
+})(); //undefined
 
 // ------------
 
@@ -42,7 +42,7 @@ var myObject = {};
 myObject.someMethod = function () {
   console.log(this);
 };
-myObject.someMethod(); //Value Of This
+myObject.someMethod(); // this points to myObject and logs
 
 // ------------
 
@@ -55,10 +55,10 @@ function Person(fn, ln) {
   };
 }
 
-let person = new Person('John', 'Reed');
-person.displayName(); // Output
-let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+// let person = new Person('John', 'Reed');
+// person.displayName(); // Output john reed
+// let person2 = new Person('Paul', 'Adams');
+// person2.displayName(); // Output paul adams
 
 // ------------
 
@@ -76,10 +76,10 @@ let user = {
   },
 };
 
-user.foo(); // Output
+user.foo(); // Output flase
 let fun1 = user.foo1;
-fun1(); // Output ??
-user.foo1(); // Output ??
+fun1(); // Output ?? // true
+user.foo1(); // Output ?? // false why??
 
 // ------------
 
@@ -91,13 +91,13 @@ var obj = {
   },
 };
 
-obj.getX(); // Output ??
+obj.getX(); // Output ??// 81
 
 var retrieveX = obj.getX;
-retrieveX(); //Output ??
+retrieveX(); //Output ?? // 9 why??
 
 var boundGetX = retrieveX.bind(obj);
-boundGetX(); // Output ??
+boundGetX(); // Output ?? // 81
 
 // ------------
 
@@ -110,12 +110,12 @@ function Person(fn, ln) {
   };
 }
 
-let person = new Person('John', 'Reed');
-person.displayName(); // Output
-let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+// let person = new Person('John', 'Reed');
+// person.displayName(); // Output john reed
+// let person2 = new Person('Paul', 'Adams');
+// person2.displayName(); // Output paul adams
 
-person.displayName.call(person2); // Output ??
+// person.displayName.call(person2); // Output ?? paul adams
 
 // ------------
 
@@ -132,22 +132,22 @@ obj.getThis3 = obj.getThis.bind(obj);
 obj.getThis4 = obj.getThis2.bind(obj);
 
 // Output
-obj.getThis();
+obj.getThis(); // window
 
 // Output
-obj.getThis.call(a);
+obj.getThis.call(a); // window
 
 // Output
-obj.getThis2();
+obj.getThis2(); //{obj}
 
 // Output
-obj.getThis2.call(a);
+obj.getThis2.call(a);// {a}
 
 // Output
-obj.getThis3();
+obj.getThis3(); // window
 
 // Output
-obj.getThis4();
+obj.getThis4(); //{getThis: ƒ, getThis2: ƒ, getThis3: ƒ, getThis4: ƒ}
 
 // -------------
 
@@ -158,10 +158,10 @@ let person = {
   },
 };
 
-person.greet(); // output
+person.greet(); // output hello jay
 
 let greet = person.greet;
-greet(); // output
+greet(); // output hello undefined
 
 // -------------
 
@@ -178,20 +178,20 @@ let person = {
     return this.name;
   },
 };
-console.log(person.details.print()); // output?
-console.log(person.print()); // output?
+console.log(person.details.print()); // output? Jay Details
+console.log(person.print()); // output? // Jay Person
 
 let name1 = person.print;
 let name2 = person.details;
 
-console.log(name1()); // output?
-console.log(name2.print()); // output?
+console.log(name1()); // output? // undefined
+console.log(name2.print()); // output? jay details ???
 
 // --------
 
 let outerFn = function () {
   let n = 5;
-  console.log(innerItem);
+  console.log(innerItem); //
   let innerFn = function () {
     let innerItem = 'inner';
     console.log(n);
@@ -199,7 +199,7 @@ let outerFn = function () {
   return innerFn;
 };
 
-outerFn()();
+outerFn()(); // VM91:3 Uncaught ReferenceError: innerItem is not defined
 
 // -----------
 
@@ -210,7 +210,7 @@ let object = {
     console.log('this inside of outerFn double()');
     console.log(this);
     return this.data.map(function (item) {
-      console.log(this); // Output ???
+      console.log(this); // Output ??? window, window, window
       return item * 2;
     });
   },
@@ -218,7 +218,7 @@ let object = {
     console.log('this inside of outerFn doubleArrow()');
     console.log(this);
     return this.dataDouble.map((item) => {
-      console.log(this); // Output ???
+      console.log(this); // Output ??? {object} {object} {object}
       return item * 2;
     });
   },
@@ -238,7 +238,7 @@ function print() {
 }
 
 let printNameBob = print.bind(bobObj);
-console.log(printNameBob()); // output??
+console.log(printNameBob()); // output?? bob
 
 // -------------------
 
@@ -257,7 +257,7 @@ let obj2 = {
 };
 
 let getSecondData = obj2.printSecondData.bind(obj1);
-console.log(getSecondData()); // Output and why ???
+console.log(getSecondData()); // Output and why ??? 2, obj 2function bind with obj1 data hence this will point to obj1
 
 // --------------
 
@@ -281,7 +281,7 @@ const call = {
 
 let newCall = call.says;
 
-newCall(); // output ???
+newCall(); // output ??? hey undefined just called
 
 //  -----------------
 
@@ -299,4 +299,4 @@ const call = {
 
 let newCall = call.anotherCaller;
 
-newCall(); // output ??
+newCall(); // output ?? undefined call too
