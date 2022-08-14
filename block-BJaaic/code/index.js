@@ -105,19 +105,17 @@ function animal(location, numberOfLegs) {
 }
 
 function dog(location, numberOfLegs, name, color) {
-  let animal = Object.create(dogMethods)
-  animal.location = location;
-  animal.numberOfLegs = numberOfLegs;
-  animal.name = name;
-  animal.color = color;
-  return animal;
+  let obj = animal(location, numberOfLegs)
+  Object.setPrototypeOf(obj, dogMethods)
+  obj.name = name;
+  obj.color = color;
+  return obj;
 }
 
 function cat(location, numberOfLegs, name, colorOfEyes) {
-  let animal = Object.create(catMethods)
-  animal.location = location;
-  animal.numberOfLegs = numberOfLegs;
-  animal.name = name;
-  animal.colorOfEyes = colorOfEyes;
-  return animal;
+  let obj = animal(location, numberOfLegs)
+  Object.setPrototypeOf(obj, catMethods)
+  obj.name = name;
+  obj.colorOfEyes = colorOfEyes;
+  return obj;
 }
