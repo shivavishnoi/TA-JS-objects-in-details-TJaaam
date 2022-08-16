@@ -70,6 +70,9 @@ function PersonConstructor() {
   this.greet = function () {
     console.log(`hello`)
   }
+  this.introduce = function () {
+    console.log(`hello mu name is ${this.name}`)
+  }
 }
 
 // /********* Uncomment this line to test your work! *********/
@@ -96,7 +99,7 @@ var mike = new personFromConstructor('Mike', 30);
 /*** CHALLENGE 3 of 3 ***/
 // add code here -- > Not able to comphrehend and perform this task 
 
-//mike.introduce(); // -> Logs 'Hi, my name is Mike'
+mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
 /****************************************************************
                         USING ES6 CLASSES
@@ -160,17 +163,18 @@ var adminFunctionStore = Object.create(userFunctionStore)/* Put code here */;
 
 function adminFactory(name, score) {
   // Put code here
-  let obj = userFactory.apply(this, [name, score])
+  let obj = userFactory(name, score)
+  Object.setPrototypeOf(obj, adminFunctionStore)
   obj.type = `admin`
   return obj
 }
 
 /* Put code here for a method called sharePublicMessage*/
-adminFactory.prototype = {
-  sharePublicMessage: function () {
-    console.log(`welcome users`)
-  }
+
+adminFunctionStore.sharePublicMessage = function () {
+  console.log(`welcome users`)
 }
+
 
 var adminFromFactory = adminFactory('Eva', 5);
 
