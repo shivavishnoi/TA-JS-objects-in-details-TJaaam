@@ -108,7 +108,12 @@ array that will contain only element that is common in both the array.
 
 // You code goes here
 Array.prototype.intersection = function (arr) {
-
+  return this.reduce((acc, cv) => {
+    if (arr.includes(cv)) {
+      acc.push(cv)
+    }
+    return acc
+  }, []).unique()
 }
 // Test to check the shuffle method (It will return different output every time you call)
 console.log(num.intersection([2, 7, 11, 32])); // [2, 7]
@@ -122,7 +127,14 @@ chunk will be the remaining elements. `length` should default to 1.
 
 // You code goes here
 Array.prototype.chunk = function (childSize = 1) {
-
+  let arr = [...this]
+  let final = []
+  let len = Math.floor(arr.length / childSize)
+  for (let i = 0; i <= len; i++) {
+    let chunk = arr.splice(0, childSize)
+    final.push(chunk)
+  }
+  return final.filter((element) => element.length)
 }
 // Test to check
 console.log(num.chunk(2)); // [[1, 2], [3, 4], [2, 3], [6, 7], [7]]
