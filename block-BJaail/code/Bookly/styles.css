@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Baloo 2', cursive;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+h1>img {
+  width: 45px;
+}
+
+h1>span {
+  color: orange;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+form>input {
+  width: 100%;
+  padding: 0.6rem;
+}
+
+button {
+  width: 103%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: rgba(197, 139, 30, 0.916);
+  cursor: pointer;
+  color: aliceblue;
+}
+
+table {
+  width: 70%;
+  text-align: center;
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+td {
+  padding: 0.5rem 0;
+}
+
+.close,
+input[type="checkbox"] {
+  cursor: pointer;
+}
